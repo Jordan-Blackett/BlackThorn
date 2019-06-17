@@ -18,9 +18,24 @@
     <ClInclude Include="src\Test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\BlackThorn\Core.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\EntryPoint.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BlackThorn\Application.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
