@@ -1,0 +1,3 @@
+[submodule "BlackThorn/vendor/spdlog"]
+	path = BlackThorn/vendor/spdlog
+	url = https://github.com/gabime/spdlog
