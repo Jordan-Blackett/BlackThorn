@@ -1,7 +1,7 @@
+#include "btpch.h"
 #include "Application.h"
 
 #include "BlackThorn/Events/ApplicationEvent.h"
-#include "BlackThorn/Log.h"
 
 namespace BlackThorn {
 

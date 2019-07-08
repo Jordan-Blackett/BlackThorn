@@ -19,6 +19,9 @@ project "BlackThorn"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "btpch.h"
+	pchsource "BlackThorn/src/btpch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",
@@ -28,9 +31,14 @@ project "BlackThorn"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
 	}
 
+	links 
+	{ 
+		"wsock32.lib"
+	}
+	
 	filter "system:windows"
 		cppdialect "C++17"
 		staticruntime "On"

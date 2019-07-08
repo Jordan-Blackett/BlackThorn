@@ -1,42 +1,63 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    <Filter Include="BlackThorn">
+      <UniqueIdentifier>{6D1261AE-59CA-A2FB-C2D1-7B57AEA83DEC}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    <Filter Include="BlackThorn\Events">
+      <UniqueIdentifier>{B121B69B-1D38-B431-66AF-3F53D20485B9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="BlackThorn\Network">
+      <UniqueIdentifier>{E611B3A0-D2F5-73F6-3B56-6E4927595E78}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\BlackThorn\Core.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClInclude Include="src\BlackThorn.h" />
     <ClInclude Include="src\BlackThorn\Application.h">
-      <Filter>Header Files</Filter>
+      <Filter>BlackThorn</Filter>
     </ClInclude>
-    <ClInclude Include="src\BlackThorn.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="src\BlackThorn\Core.h">
+      <Filter>BlackThorn</Filter>
     </ClInclude>
     <ClInclude Include="src\BlackThorn\EntryPoint.h">
-      <Filter>Header Files</Filter>
+      <Filter>BlackThorn</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Events\ApplicationEvent.h">
+      <Filter>BlackThorn\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Events\Event.h">
+      <Filter>BlackThorn\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Events\KeyEvent.h">
+      <Filter>BlackThorn\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Events\MouseEvent.h">
+      <Filter>BlackThorn\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\BlackThorn\Log.h">
-      <Filter>Header Files</Filter>
+      <Filter>BlackThorn</Filter>
     </ClInclude>
+    <ClInclude Include="src\BlackThorn\Network\Network.h">
+      <Filter>BlackThorn\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Network\Socket.h">
+      <Filter>BlackThorn\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="src\btpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BlackThorn\Application.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>BlackThorn</Filter>
     </ClCompile>
     <ClCompile Include="src\BlackThorn\Log.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>BlackThorn</Filter>
     </ClCompile>
+    <ClCompile Include="src\BlackThorn\Network\Network.cpp">
+      <Filter>BlackThorn\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BlackThorn\Network\Socket.cpp">
+      <Filter>BlackThorn\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="src\btpch.cpp" />
   </ItemGroup>
 </Project>

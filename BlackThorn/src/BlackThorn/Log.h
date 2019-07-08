@@ -28,11 +28,11 @@ namespace BlackThorn {
 #define BT_CORE_INFO(...)  ::BlackThorn::Log::GetCoreLogger()->info(__VA_ARGS__)
 #define BT_CORE_WARN(...)  ::BlackThorn::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define BT_CORE_ERROR(...) ::BlackThorn::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define BT_CORE_FATAL(...) ::BlackThorn::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define BT_CORE_CRITICAL(...) ::BlackThorn::Log::GetCoreLogger()->critical(__VA_ARGS__)
 
 // Client log macros
 #define BT_TRACE(...)      ::BlackThorn::Log::GetClientLogger()->trace(__VA_ARGS__)
 #define BT_INFO(...)       ::BlackThorn::Log::GetClientLogger()->info(__VA_ARGS__)
 #define BT_WARN(...)       ::BlackThorn::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define BT_ERROR(...)      ::BlackThorn::Log::GetClientLogger()->error(__VA_ARGS__)
-#define BT_FATAL(...)      ::BlackThorn::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define BT_CRITICAL(...)      ::BlackThorn::Log::GetClientLogger()->critical(__VA_ARGS__)
