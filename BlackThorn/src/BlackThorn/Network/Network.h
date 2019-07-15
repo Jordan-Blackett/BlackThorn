@@ -20,7 +20,7 @@ namespace BlackThorn {
 
 		static bool Initialize();
 		static void InitializeTCP(const char* address, int port);
-		static bool InitializeUDP();
+		static void InitializeUDP(const char* address, int port);
 
 		static void CleanUp();
 
@@ -34,6 +34,11 @@ namespace BlackThorn {
 		static bool ShutdownConnection(SOCKET sd);
 
 		// UDP
+
+		static SOCKET CreateUDPSocket(const char* address, int port, sockaddr_in outhint);
+		static DWORD UDPConsumer(SOCKET udpsocket, sockaddr_in hint);
+		static bool EchoIncomingUDPPackets(SOCKET udpsocket, sockaddr_in hint);
+
 	private:
 		static std::thread TCPListenerThread;
 	};

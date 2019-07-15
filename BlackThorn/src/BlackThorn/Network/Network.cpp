@@ -3,7 +3,7 @@
 
 namespace BlackThorn {
 
-	void InitializeTCP(const char* address, int port);
+	//void InitializeTCP(const char* address, int port);
 
 	Network::Network()
 	{
@@ -55,9 +55,18 @@ namespace BlackThorn {
 		//return true;
 	}
 
-	bool Network::InitializeUDP()
+	void Network::InitializeUDP(const char* address, int port)
 	{
-		return false;
+		BT_CORE_WARN("NETWORK: Establishing UDP Socket...");
+		sockaddr_in hint = sockaddr_in();
+		SOCKET UDPSocket = CreateUDPSocket(address, port, hint);
+		if (UDPSocket == INVALID_SOCKET)
+		{
+			BT_CORE_ERROR("NETWORK: UDPSocket - INVALID_SOCKET.");
+			system("pause");
+		}
+		BT_CORE_INFO("NETWORK: UDP Established.");
+		UDPConsumer(UDPSocket, hint);
 	}
 
 	void Network::CleanUp()
@@ -86,13 +95,12 @@ namespace BlackThorn {
 				}
 				else
 				{
-					// Unable to bind socket
+					// Failed to bind socket
 					BT_CORE_ERROR("NETWORK: Unable To Bind Listen Socket.");
 					CleanUp();
 					return INVALID_SOCKET;
 				}
 			}
-
 			return listeningSocket;
 		}
 		return INVALID_SOCKET;
@@ -149,13 +157,13 @@ namespace BlackThorn {
 		do {
 			readBytes = recv(sd, acReadBuffer, BUFFER_SIZE, 0);
 			if (readBytes > 0) {
-				BT_CORE_TRACE("NETWORK: Received {0} bytes from client.", readBytes);
+				BT_CORE_TRACE("NETWORK: TCP - Received {0} bytes from client.", readBytes);
 				int sentBytes = 0;
 				while (sentBytes < readBytes) {
 					int temp = send(sd, acReadBuffer + sentBytes,
 						readBytes - sentBytes, 0);
 					if (temp > 0) {
-						BT_CORE_TRACE("NETWORK: Sent {0} bytes back to client.", temp);
+						BT_CORE_TRACE("NETWORK: TCP - Sent {0} bytes back to client.", temp);
 						sentBytes += temp;
 					}
 					else if (temp == SOCKET_ERROR) {
@@ -181,6 +189,96 @@ namespace BlackThorn {
 	bool Network::ShutdownConnection(SOCKET sd)
 	{
 		return closesocket(sd);
+	}
+
+	SOCKET Network::CreateUDPSocket(const char * address, int port, sockaddr_in outhint)
+	{
+		u_long interfaceAddr = inet_addr(address);
+		if (interfaceAddr != INADDR_NONE)
+		{
+			SOCKET UDPSocket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+			if (UDPSocket != INVALID_SOCKET)
+			{
+				sockaddr_in hint;
+				hint.sin_family = AF_INET;
+				hint.sin_addr.s_addr = interfaceAddr;
+				hint.sin_port = htons(port);
+				outhint = hint;
+
+				if (bind(UDPSocket, (sockaddr*)&hint, sizeof(hint)) == SOCKET_ERROR)
+				{
+					// Failed to bind socket
+					BT_CORE_ERROR("NETWORK: Unable To Bind Listen Socket.");
+					// CleanUp();
+					return INVALID_SOCKET;
+				}
+			}
+			return UDPSocket;
+		}
+		return INVALID_SOCKET;
+	}
+
+	DWORD Network::UDPConsumer(SOCKET udpsocket, sockaddr_in hint)
+	{
+		int retval = 0;
+
+		if (!EchoIncomingUDPPackets(udpsocket, hint)) {
+			BT_CORE_ERROR("NETWORK: Echo incoming packets failed");
+			retval = 3;
+		}
+
+		BT_CORE_WARN("NETWORK: Shutting connection down...");
+		if (ShutdownConnection(udpsocket) != SOCKET_ERROR) {
+			BT_CORE_INFO("NETWORK: Connection is down");
+		}
+		else {
+			BT_CORE_ERROR("NETWORK: Connection shutdown failed");
+			retval = 3;
+		}
+
+		return retval;
+	}
+
+	bool Network::EchoIncomingUDPPackets(SOCKET udpsocket, sockaddr_in hint)
+	{
+		SOCKADDR_IN client;
+		ZeroMemory(&client, sizeof(client));
+		int clientLength = sizeof(client);
+
+		// Read data from client
+		char acReadBuffer[BUFFER_SIZE];
+		int flags = 0;
+
+		int readBytes;
+		do {
+			readBytes = recvfrom(udpsocket, acReadBuffer, BUFFER_SIZE, flags, (SOCKADDR*)&client, &clientLength);
+			if (readBytes > 0) {
+				BT_CORE_TRACE("NETWORK: UDP - Received {0} bytes from client.", readBytes);
+				int sentBytes = 0;
+				while (sentBytes < readBytes) {
+					int temp = sendto(udpsocket, acReadBuffer + sentBytes, readBytes - sentBytes, 0, (sockaddr*)&hint, sizeof(hint));
+					if (temp > 0) {
+						BT_CORE_TRACE("NETWORK: UDP - Sent {0} bytes back to client.", temp);
+						sentBytes += temp;
+					}
+					else if (temp == SOCKET_ERROR) {
+						return false;
+					}
+					else {
+						// Client closed connection before we could reply to
+						// all the data it sent, so bomb out early.
+						BT_CORE_TRACE("NETWORK: Peer unexpectedly dropped connection!", temp);
+						return true;
+					}
+				}
+			}
+			else if (readBytes == SOCKET_ERROR) {
+				return false;
+			}
+		} while (readBytes != 0);
+
+		BT_CORE_WARN("Connection closed by peer.");
+		return true;
 	}
 
 }
