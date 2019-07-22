@@ -10,6 +10,12 @@ workspace "BlackThorn"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+-- Include directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "BlackThorn/vendor/GLFW/include"
+
+include "BlackThorn/vendor/GLFW"
+
 -- BLACKTHORN
 project "BlackThorn"
 	location "BlackThorn"
@@ -32,11 +38,14 @@ project "BlackThorn"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
 	}
 
 	links 
 	{ 
-		"wsock32.lib"
+		"wsock32.lib",
+		"GLFW",
+		"opengl32.lib"
 	}
 	
 	filter "system:windows"
@@ -85,7 +94,8 @@ project "WhiteThorn"
 	includedirs
 	{
 		"BlackThorn/vendor/spdlog/include",
-		"BlackThorn/src"
+		"BlackThorn/src",
+		"Hazel/vendor"
 	}
 
 	links 
