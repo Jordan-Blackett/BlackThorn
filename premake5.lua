@@ -66,14 +66,20 @@ project "BlackThorn"
 
 	filter "configurations:Debug"
 		defines "BT_DEBUG"
+		runtime "Debug"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "BT_RELEASE"
+		runtime "Release"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "BT_DIST"
+		runtime "Release"
+		buildoptions "/MD"
 		optimize "On"
 
 -- WHITETHORN
@@ -115,12 +121,18 @@ project "WhiteThorn"
 
 	filter "configurations:Debug"
 		defines "BT_DEBUG"
+		runtime "Debug"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "BT_RELEASE"
+		runtime "Release"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "BT_DIST"
+		runtime "Release"
+		buildoptions "/MD"
 		optimize "On"
