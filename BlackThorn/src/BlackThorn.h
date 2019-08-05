@@ -5,6 +5,7 @@
 #include "BlackThorn/Layer.h"
 #include "BlackThorn/Log.h"
 
+#include "BlackThorn/ImGui/ImGuiLayer.h"
 
 // ----Entry Point------------------
 #include "BlackThorn/EntryPoint.h"

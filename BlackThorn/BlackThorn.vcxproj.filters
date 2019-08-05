@@ -7,11 +7,17 @@
     <Filter Include="BlackThorn\Events">
       <UniqueIdentifier>{B121B69B-1D38-B431-66AF-3F53D20485B9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="BlackThorn\ImGui">
+      <UniqueIdentifier>{57E5FA04-43DE-1957-6C10-FFDB5868F962}</UniqueIdentifier>
+    </Filter>
     <Filter Include="BlackThorn\Network">
       <UniqueIdentifier>{E611B3A0-D2F5-73F6-3B56-6E4927595E78}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platform\Windows">
       <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
@@ -40,6 +46,9 @@
     <ClInclude Include="src\BlackThorn\Events\MouseEvent.h">
       <Filter>BlackThorn\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\BlackThorn\ImGui\ImGuiLayer.h">
+      <Filter>BlackThorn\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\BlackThorn\Layer.h">
       <Filter>BlackThorn</Filter>
     </ClInclude>
@@ -58,6 +67,9 @@
     <ClInclude Include="src\BlackThorn\Window.h">
       <Filter>BlackThorn</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRendener.h">
+      <Filter>Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
@@ -66,6 +78,9 @@
   <ItemGroup>
     <ClCompile Include="src\BlackThorn\Application.cpp">
       <Filter>BlackThorn</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BlackThorn\ImGui\ImGuiLayer.cpp">
+      <Filter>BlackThorn\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\BlackThorn\Layer.cpp">
       <Filter>BlackThorn</Filter>
@@ -81,6 +96,9 @@
     </ClCompile>
     <ClCompile Include="src\BlackThorn\Network\Socket.cpp">
       <Filter>BlackThorn\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRendener.cpp">
+      <Filter>Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>Platform\Windows</Filter>

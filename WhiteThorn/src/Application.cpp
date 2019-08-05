@@ -25,6 +25,7 @@ public:
 	WhiteThorn()
 	{
 		PushLayer(new ExampleLayer());
+		PushOverlay(new BlackThorn::ImGuiLayer());
 	}
 
 	~WhiteThorn()
