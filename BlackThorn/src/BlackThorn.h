@@ -5,6 +5,10 @@
 #include "BlackThorn/Layer.h"
 #include "BlackThorn/Log.h"
 
+#include "BlackThorn/Input.h"
+#include "BlackThorn/KeyCodes.h"
+#include "BlackThorn/MouseButtonCodes.h"
+
 #include "BlackThorn/ImGui/ImGuiLayer.h"
 
 // ----Entry Point------------------

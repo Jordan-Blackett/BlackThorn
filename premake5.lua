@@ -1,5 +1,6 @@
 workspace "BlackThorn"
 	architecture "x64"
+	startproject "WhiteThorn"
 
 	configurations
 	{
@@ -16,6 +17,13 @@ IncludeDir["GLFW"] = "BlackThorn/vendor/GLFW/include"
 IncludeDir["Glad"] = "BlackThorn/vendor/Glad/include"
 IncludeDir["ImGui"] = "BlackThorn/vendor/imgui"
 
+group "Dependencies"
+	include "BlackThorn/vendor/GLFW"
+	include "BlackThorn/vendor/Glad"
+	include "BlackThorn/vendor/imgui"
+
+group ""
+
 include "BlackThorn/vendor/GLFW"
 include "BlackThorn/vendor/Glad"
 include "BlackThorn/vendor/ImGui"
@@ -25,6 +33,7 @@ project "BlackThorn"
 	location "BlackThorn"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -58,7 +67,6 @@ project "BlackThorn"
 	
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -70,25 +78,22 @@ project "BlackThorn"
 
 		postbuildcommands
 		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/WhiteThorn")
+			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/WhiteThorn/\"")
 		}
 
 	filter "configurations:Debug"
 		defines "BT_DEBUG"
 		runtime "Debug"
-		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "BT_RELEASE"
 		runtime "Release"
-		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "BT_DIST"
 		runtime "Release"
-		buildoptions "/MD"
 		optimize "On"
 
 -- WHITETHORN
@@ -96,6 +101,7 @@ project "WhiteThorn"
 	location "WhiteThorn"
 	kind "ConsoleApp"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -131,17 +137,14 @@ project "WhiteThorn"
 	filter "configurations:Debug"
 		defines "BT_DEBUG"
 		runtime "Debug"
-		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "BT_RELEASE"
 		runtime "Release"
-		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "BT_DIST"
 		runtime "Release"
-		buildoptions "/MD"
 		optimize "On"

@@ -10,12 +10,19 @@ public:
 
 	void OnUpdate() override
 	{
-		BT_INFO("ExampleLayer::Update");
+		if (BlackThorn::Input::IsKeyPressed(BT_KEY_TAB))
+		{
+			BT_TRACE("Tab key is pressed!");
+		}
 	}
 
 	void OnEvent(BlackThorn::Event& event) override
 	{
-		BT_TRACE("{0}", event);
+		if (event.GetEventType() == BlackThorn::EventType::KeyPressed)
+		{
+			BlackThorn::KeyPressedEvent& e = (BlackThorn::KeyPressedEvent&)event;
+			BT_TRACE("{0}", (char)e.GetKeyCode());
+		}
 	}
 };
 
