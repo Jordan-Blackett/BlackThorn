@@ -7,6 +7,8 @@
 #include "Events/Event.h"
 #include "BlackThorn/Events/ApplicationEvent.h"
 
+#include "BlackThorn/ImGui/ImGuiLayer.h"
+
 namespace BlackThorn {
 
 	class BLACKTHORN_API Application
@@ -28,6 +30,7 @@ namespace BlackThorn {
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 	private:

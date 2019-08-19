@@ -16,6 +16,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "BlackThorn/vendor/GLFW/include"
 IncludeDir["Glad"] = "BlackThorn/vendor/Glad/include"
 IncludeDir["ImGui"] = "BlackThorn/vendor/imgui"
+IncludeDir["glm"] = "BlackThorn/vendor/glm"
 
 group "Dependencies"
 	include "BlackThorn/vendor/GLFW"
@@ -24,16 +25,13 @@ group "Dependencies"
 
 group ""
 
-include "BlackThorn/vendor/GLFW"
-include "BlackThorn/vendor/Glad"
-include "BlackThorn/vendor/ImGui"
-
 -- BLACKTHORN
 project "BlackThorn"
 	location "BlackThorn"
 	kind "SharedLib"
 	language "C++"
-	staticruntime "off"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -45,6 +43,8 @@ project "BlackThorn"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
 
 	includedirs
@@ -53,7 +53,8 @@ project "BlackThorn"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links 
@@ -66,7 +67,6 @@ project "BlackThorn"
 	}
 	
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 
 		defines
@@ -101,7 +101,8 @@ project "WhiteThorn"
 	location "WhiteThorn"
 	kind "ConsoleApp"
 	language "C++"
-	staticruntime "off"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -109,14 +110,15 @@ project "WhiteThorn"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/src/**.cpp"
 	}
 
 	includedirs
 	{
 		"BlackThorn/vendor/spdlog/include",
 		"BlackThorn/src",
-		"Hazel/vendor"
+		"BlackThorn/vendor",
+		"%{IncludeDir.glm}"
 	}
 
 	links 
@@ -125,8 +127,6 @@ project "WhiteThorn"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
