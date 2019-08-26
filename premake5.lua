@@ -28,7 +28,7 @@ group ""
 -- BLACKTHORN
 project "BlackThorn"
 	location "BlackThorn"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
 	staticruntime "on"
@@ -45,6 +45,11 @@ project "BlackThorn"
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl",
+	}
+
+	defines 
+	{
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 
 	includedirs
@@ -76,25 +81,20 @@ project "BlackThorn"
 			"GLFW_INCLUDE_NONE"
 		}
 
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/WhiteThorn/\"")
-		}
-
 	filter "configurations:Debug"
 		defines "BT_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "BT_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "BT_DIST"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 -- WHITETHORN
 project "WhiteThorn"
@@ -137,14 +137,14 @@ project "WhiteThorn"
 	filter "configurations:Debug"
 		defines "BT_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "BT_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "BT_DIST"
 		runtime "Release"
-		optimize "On"
+		optimize "on"

@@ -16,8 +16,14 @@
     <Filter Include="src\BlackThorn\Network">
       <UniqueIdentifier>{9D758A97-896F-B3E9-72DC-49FA5E751956}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\BlackThorn\Renderer">
+      <UniqueIdentifier>{4A3B842A-B672-CCC1-BF7C-30E52B33F3BA}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
@@ -96,8 +102,14 @@
     <ClInclude Include="src\BlackThorn\Network\Socket.h">
       <Filter>src\BlackThorn\Network</Filter>
     </ClInclude>
+    <ClInclude Include="src\BlackThorn\Renderer\GraphicsContext.h">
+      <Filter>src\BlackThorn\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\BlackThorn\Window.h">
       <Filter>src\BlackThorn</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
       <Filter>src\Platform\Windows</Filter>
@@ -1237,6 +1249,9 @@
     </ClCompile>
     <ClCompile Include="src\BlackThorn\Network\Socket.cpp">
       <Filter>src\BlackThorn\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
