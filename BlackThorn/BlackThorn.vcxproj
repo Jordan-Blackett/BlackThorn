@@ -158,6 +158,7 @@
     <ClInclude Include="src\BlackThorn\Network\Network.h" />
     <ClInclude Include="src\BlackThorn\Network\Socket.h" />
     <ClInclude Include="src\BlackThorn\Renderer\GraphicsContext.h" />
+    <ClInclude Include="src\BlackThorn\Renderer\Shader.h" />
     <ClInclude Include="src\BlackThorn\Window.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
@@ -541,6 +542,7 @@
     <ClCompile Include="src\BlackThorn\Log.cpp" />
     <ClCompile Include="src\BlackThorn\Network\Network.cpp" />
     <ClCompile Include="src\BlackThorn\Network\Socket.cpp" />
+    <ClCompile Include="src\BlackThorn\Renderer\Shader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />

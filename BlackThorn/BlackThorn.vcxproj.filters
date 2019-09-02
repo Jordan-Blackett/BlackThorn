@@ -1224,6 +1224,7 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
+    <ClInclude Include="src\BlackThorn\Renderer\Shader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BlackThorn\Application.cpp">
@@ -1262,5 +1263,6 @@
     <ClCompile Include="src\btpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\BlackThorn\Renderer\Shader.cpp" />
   </ItemGroup>
 </Project>
