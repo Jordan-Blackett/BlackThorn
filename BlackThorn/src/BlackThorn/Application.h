@@ -10,6 +10,8 @@
 #include "BlackThorn/ImGui/ImGuiLayer.h"
 
 #include "BlackThorn/Renderer/Shader.h"
+#include "BlackThorn/Renderer/Buffer.h"
+#include "BlackThorn/Renderer/VertexArray.h"
 
 namespace BlackThorn {
 
@@ -36,9 +38,11 @@ namespace BlackThorn {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		unsigned int m_VertexArray, m_VertexBuffer, m_IndexBuffer;
+		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<VertexArray> m_VertexArray;
 
-		std::unique_ptr<Shader> m_Shader;
+		std::shared_ptr<Shader> m_SquareShader;
+		std::shared_ptr<VertexArray> m_SquareVertexArray;
 	private:
 		static Application* s_Instance;
 	};

@@ -2,8 +2,7 @@
 
 #include <string>
 
-namespace BlackThorn 
-{
+namespace BlackThorn {
 
 	class Shader
 	{

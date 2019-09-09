@@ -1225,6 +1225,12 @@
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
     <ClInclude Include="src\BlackThorn\Renderer\Shader.h" />
+    <ClInclude Include="src\BlackThorn\Renderer\Texture.h" />
+    <ClInclude Include="src\BlackThorn\Renderer\Buffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\BlackThorn\Renderer\Renderer.h" />
+    <ClInclude Include="src\BlackThorn\Renderer\VertexArray.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BlackThorn\Application.cpp">
@@ -1264,5 +1270,11 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\BlackThorn\Renderer\Shader.cpp" />
+    <ClCompile Include="src\BlackThorn\Renderer\Texture.cpp" />
+    <ClCompile Include="src\BlackThorn\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\BlackThorn\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\BlackThorn\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
   </ItemGroup>
 </Project>
