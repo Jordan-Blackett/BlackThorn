@@ -9,10 +9,10 @@ namespace BlackThorn {
 
 	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
 	{
-		switch (Renderer::GetRendererAPI())
+		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::None:		BT_CORE_ASSERT(false, "RendererAPI::None Is Currently Not Supported");
-			case RendererAPI::OpenGL:  return new OpenGLVertexBuffer(vertices, size);
+			case RendererAPI::API::None:		BT_CORE_ASSERT(false, "RendererAPI::None Is Currently Not Supported");
+			case RendererAPI::API::OpenGL:  return new OpenGLVertexBuffer(vertices, size);
 		}
 
 		BT_CORE_ASSERT(false, "Unknown RendererAPI!");
@@ -21,10 +21,10 @@ namespace BlackThorn {
 
 	IndexBuffer* IndexBuffer::Create(uint32_t* indices, uint32_t count)
 	{
-		switch (Renderer::GetRendererAPI())
+		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:		BT_CORE_ASSERT(false, "RendererAPI::None Is Currently Not Supported");
-		case RendererAPI::OpenGL:  return new OpenGLIndexBuffer(indices, count);
+		case RendererAPI::API::None:		BT_CORE_ASSERT(false, "RendererAPI::None Is Currently Not Supported");
+		case RendererAPI::API::OpenGL:  return new OpenGLIndexBuffer(indices, count);
 		}
 
 		BT_CORE_ASSERT(false, "Unknown RendererAPI!");
