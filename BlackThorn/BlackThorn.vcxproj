@@ -140,6 +140,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\BlackThorn\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\BlackThorn\Renderer\RenderCommand.h" />
     <ClInclude Include="src\BlackThorn\Renderer\RendererAPI.h" />
     <ClInclude Include="src\BlackThorn\Renderer\Buffer.h" />
@@ -543,6 +544,7 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\BlackThorn\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\BlackThorn\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\BlackThorn\Renderer\RendererAPI.cpp" />
     <ClCompile Include="src\BlackThorn\Renderer\Buffer.cpp" />

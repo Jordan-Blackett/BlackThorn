@@ -13,6 +13,8 @@
 #include "BlackThorn/Renderer/Buffer.h"
 #include "BlackThorn/Renderer/VertexArray.h"
 
+#include "BlackThorn/Renderer/OrthographicCamera.h"
+
 namespace BlackThorn {
 
 	class BLACKTHORN_API Application
@@ -43,6 +45,8 @@ namespace BlackThorn {
 
 		std::shared_ptr<Shader> m_SquareShader;
 		std::shared_ptr<VertexArray> m_SquareVertexArray;
+
+		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};

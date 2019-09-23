@@ -1,5 +1,7 @@
 #include <BlackThorn.h>
 
+#include "imgui/imgui.h"
+
 class ExampleLayer : public BlackThorn::Layer
 {
 public:
@@ -15,6 +17,14 @@ public:
 			BT_TRACE("Tab key is pressed!");
 		}
 	}
+
+	virtual void OnImGuiRender() override
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World");
+		ImGui::End();
+	}
+
 
 	void OnEvent(BlackThorn::Event& event) override
 	{
