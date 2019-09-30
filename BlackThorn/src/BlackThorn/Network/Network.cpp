@@ -3,18 +3,6 @@
 
 namespace BlackThorn {
 
-	//void InitializeTCP(const char* address, int port);
-
-	Network::Network()
-	{
-
-	}
-
-	Network::~Network()
-	{
-
-	}
-
 	bool Network::Initialize()
 	{
 		// Initialze winsock
@@ -29,10 +17,14 @@ namespace BlackThorn {
 		BT_CORE_INFO("NETWORK: WSAStartup Successfull.");
 
 		//char localIP[10] = "127.0.0.1";
-		//Network::TCPListenerThread = std::thread(Network::InitializeTCP, localIP, PORT);
+		//m_ListenerThread = std::thread(Network::InitializeTCP, localIP, PORT);
 
 		return true;
 	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	// TCP /////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	void Network::InitializeTCP(const char* address, int port)
 	{
@@ -73,17 +65,23 @@ namespace BlackThorn {
 	{
 	}
 
+	void Network::Close()
+	{
+	}
+
 	SOCKET Network::CreateListenSocket(const char* address, int port)
 	{
 		u_long interfaceAddr = inet_addr(address);
+		//u_long interfaceAddr = InetPton(AF_INET, address, &interfaceAddr);
 		if (interfaceAddr != INADDR_NONE)
 		{
-			SOCKET listeningSocket = socket(AF_INET, SOCK_STREAM, 0);
+			SOCKET listeningSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 			if (listeningSocket != INVALID_SOCKET)
 			{
 				sockaddr_in hint;
 				hint.sin_family = AF_INET;
-				hint.sin_addr.s_addr = interfaceAddr;
+				//hint.sin_addr.s_addr = interfaceAddr;
+				hint.sin_addr.s_addr = INADDR_ANY;
 				hint.sin_port = htons(port);
 
 				if (bind(listeningSocket, (sockaddr*)&hint, sizeof(hint)) != SOCKET_ERROR)
@@ -112,8 +110,7 @@ namespace BlackThorn {
 		int addrSize = sizeof(sinRemote);
 
 		while (true) {
-			SOCKET sd = accept(ListeningSocket, (sockaddr*)&sinRemote,
-				&addrSize);
+			SOCKET sd = accept(ListeningSocket, (sockaddr*)&sinRemote, &addrSize);
 			if (sd != INVALID_SOCKET) {
 				BT_CORE_INFO("NETWORK: Accepted Connection From {0} : {1}", inet_ntoa(sinRemote.sin_addr), ntohs(sinRemote.sin_port));
 
@@ -186,10 +183,9 @@ namespace BlackThorn {
 		return true;
 	}
 
-	bool Network::ShutdownConnection(SOCKET sd)
-	{
-		return closesocket(sd);
-	}
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	// UDP /////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	SOCKET Network::CreateUDPSocket(const char * address, int port, sockaddr_in outhint)
 	{
@@ -208,7 +204,7 @@ namespace BlackThorn {
 				if (bind(UDPSocket, (sockaddr*)&hint, sizeof(hint)) == SOCKET_ERROR)
 				{
 					// Failed to bind socket
-					BT_CORE_ERROR("NETWORK: Unable To Bind Listen Socket.");
+					BT_CORE_ERROR("NETWORK: Unable To Bind UDP Socket.");
 					// CleanUp();
 					return INVALID_SOCKET;
 				}
@@ -279,6 +275,15 @@ namespace BlackThorn {
 
 		BT_CORE_WARN("Connection closed by peer.");
 		return true;
+	}
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	// ... /////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	bool Network::ShutdownConnection(SOCKET sd)
+	{
+		return closesocket(sd);
 	}
 
 }

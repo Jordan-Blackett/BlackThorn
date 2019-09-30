@@ -171,6 +171,7 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsNetwork.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\btpch.h" />
     <ClInclude Include="src\BlackThorn\Renderer\Texture.h" />

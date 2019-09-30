@@ -11,6 +11,17 @@
 
 #include "BlackThorn/ImGui/ImGuiLayer.h"
 
+// ----Renderer---------------------
+#include "BlackThorn/Renderer/Renderer.h"
+#include "BlackThorn/Renderer/RenderCommand.h"
+
+#include "BlackThorn/Renderer/Buffer.h"
+#include "BlackThorn/Renderer/Shader.h"
+#include "BlackThorn/Renderer/VertexArray.h"
+
+#include "BlackThorn/Renderer/OrthographicCamera.h"
+// ---------------------------------
+
 // ----Entry Point------------------
 #include "BlackThorn/EntryPoint.h"
 // ---------------------------------
