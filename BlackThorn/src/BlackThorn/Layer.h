@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BlackThorn/Core.h"
+#include "BlackThorn/Core/TimeStep.h"
 #include "BlackThorn/Events/Event.h"
 
 namespace BlackThorn {
@@ -13,7 +14,7 @@ namespace BlackThorn {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep ts) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

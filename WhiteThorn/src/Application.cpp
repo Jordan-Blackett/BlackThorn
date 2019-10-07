@@ -18,7 +18,7 @@ public:
 		}
 	}
 
-	virtual void OnUpdate() override
+	virtual void OnUpdate(BlackThorn::Timestep ts) override
 	{
 	}
 
@@ -148,22 +148,24 @@ public:
 		m_SquareShader.reset(new BlackThorn::Shader(squareVertexSrc, squareFragmentSrc));
 	}
 
-	virtual void OnUpdate() override
+	virtual void OnUpdate(BlackThorn::Timestep ts) override
 	{
+		BT_TRACE("Delta time: {0}s ({1}ms)", ts.GetSeconds(), ts.GetMilliseconds());
+
 		if (BlackThorn::Input::IsKeyPressed(BT_KEY_A))
-			m_CameraPosition.x -= m_CameraMoveSpeed;
+			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
 		else if (BlackThorn::Input::IsKeyPressed(BT_KEY_D))
-			m_CameraPosition.x += m_CameraMoveSpeed;
+			m_CameraPosition.x += m_CameraMoveSpeed * ts;
 
 		if (BlackThorn::Input::IsKeyPressed(BT_KEY_W))
-			m_CameraPosition.y += m_CameraMoveSpeed;
+			m_CameraPosition.y += m_CameraMoveSpeed * ts;
 		else if (BlackThorn::Input::IsKeyPressed(BT_KEY_S))
-			m_CameraPosition.y -= m_CameraMoveSpeed;
+			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
 
 		if (BlackThorn::Input::IsKeyPressed(BT_KEY_Q))
-			m_CameraRotation -= m_CameraRotationSpeed;
+			m_CameraRotation -= m_CameraRotationSpeed * ts;
 		if (BlackThorn::Input::IsKeyPressed(BT_KEY_E))
-			m_CameraRotation += m_CameraRotationSpeed;
+			m_CameraRotation += m_CameraRotationSpeed * ts;
 
 		BlackThorn::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		BlackThorn::RenderCommand::Clear();
@@ -218,10 +220,10 @@ private:
 
 	BlackThorn::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 0.1f;
+	float m_CameraMoveSpeed = 5.0f;
 
 	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 0.2f;
+	float m_CameraRotationSpeed = 180.0f;
 };
 
 class WhiteThorn : public BlackThorn::Application

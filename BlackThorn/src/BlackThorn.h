@@ -5,6 +5,8 @@
 #include "BlackThorn/Layer.h"
 #include "BlackThorn/Log.h"
 
+#include "BlackThorn/Core/TimeStep.h"
+
 #include "BlackThorn/Input.h"
 #include "BlackThorn/KeyCodes.h"
 #include "BlackThorn/MouseButtonCodes.h"
