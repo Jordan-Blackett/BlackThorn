@@ -1237,6 +1237,7 @@
     <ClInclude Include="src\BlackThorn\Renderer\OrthographicCamera.h" />
     <ClInclude Include="src\Platform\Windows\WindowsNetwork.h" />
     <ClInclude Include="src\BlackThorn\Core\Timestep.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BlackThorn\Application.cpp">
@@ -1286,5 +1287,6 @@
     <ClCompile Include="src\BlackThorn\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\BlackThorn\Renderer\OrthographicCamera.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
   </ItemGroup>
 </Project>

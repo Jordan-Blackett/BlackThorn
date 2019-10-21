@@ -1,8 +1,11 @@
 #include <BlackThorn.h>
 
+#include "Platform/OpenGL/OpenGLShader.h"
+
 #include "imgui/imgui.h"
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 class NetworkLayer : public BlackThorn::Layer
 {
@@ -117,9 +120,9 @@ public:
 			}
 		)";
 
-		m_Shader.reset(new BlackThorn::Shader(vertexSrc, fragmentSrc));
+		m_Shader.reset(BlackThorn::Shader::Create(vertexSrc, fragmentSrc));
 
-		std::string squareVertexSrc = R"(
+		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
@@ -136,20 +139,22 @@ public:
 			}
 		)";
 
-		std::string squareFragmentSrc = R"(
+		std::string flatColorShaderFragmentSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) out vec4 color;
 
 			in vec3 v_Position;
 
+			uniform vec3 u_Color;
+
 			void main()
 			{
-				color = vec4(v_Position * 0.5 + 0.5, 1);
+				color = vec4(u_Color, 1);
 			}
 		)";
 
-		m_SquareShader.reset(new BlackThorn::Shader(squareVertexSrc, squareFragmentSrc));
+		m_flatColorShader.reset(BlackThorn::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
 	}
 
 	virtual void OnUpdate(BlackThorn::Timestep ts) override
@@ -181,17 +186,20 @@ public:
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
+		std::dynamic_pointer_cast<BlackThorn::OpenGLShader>(m_flatColorShader)->Bind();
+		std::dynamic_pointer_cast<BlackThorn::OpenGLShader>(m_flatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+		
 		for (int y = 0; y < 20; y++)
 		{
 			for (int x = 0; x < 20; x++)
 			{
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-				BlackThorn::Renderer::Submit(m_SquareShader, m_SquareVertexArray, transform);
+				BlackThorn::Renderer::Submit(m_flatColorShader, m_SquareVertexArray, transform);
 			}
 		}
 
-		//BlackThorn::Renderer::Submit(m_SquareShader, m_SquareVertexArray);
+		//BlackThorn::Renderer::Submit(m_flatColorShader, m_SquareVertexArray);
 		BlackThorn::Renderer::Submit(m_Shader, m_VertexArray);
 
 		BlackThorn::Renderer::EndScene();
@@ -199,8 +207,8 @@ public:
 
 	virtual void OnImGuiRender() override
 	{
-		ImGui::Begin("Test");
-		ImGui::Text("Hello World");
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
 		ImGui::End();
 	}
 
@@ -231,7 +239,7 @@ private:
 	std::shared_ptr<BlackThorn::Shader> m_Shader;
 	std::shared_ptr<BlackThorn::VertexArray> m_VertexArray;
 
-	std::shared_ptr<BlackThorn::Shader> m_SquareShader;
+	std::shared_ptr<BlackThorn::Shader> m_flatColorShader;
 	std::shared_ptr<BlackThorn::VertexArray> m_SquareVertexArray;
 
 	BlackThorn::OrthographicCamera m_Camera;
@@ -240,6 +248,8 @@ private:
 
 	float m_CameraRotation = 0.0f;
 	float m_CameraRotationSpeed = 180.0f;
+
+	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
 
 class WhiteThorn : public BlackThorn::Application
