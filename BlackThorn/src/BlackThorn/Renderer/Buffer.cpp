@@ -11,7 +11,7 @@ namespace BlackThorn {
 	{
 		switch (Renderer::GetAPI())
 		{
-			case RendererAPI::API::None:		BT_CORE_ASSERT(false, "RendererAPI::None Is Currently Not Supported");
+			case RendererAPI::API::None:	BT_CORE_ASSERT(false, "RendererAPI::None Is Currently Not Supported");
 			case RendererAPI::API::OpenGL:  return new OpenGLVertexBuffer(vertices, size);
 		}
 
@@ -23,7 +23,7 @@ namespace BlackThorn {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::API::None:		BT_CORE_ASSERT(false, "RendererAPI::None Is Currently Not Supported");
+		case RendererAPI::API::None:	BT_CORE_ASSERT(false, "RendererAPI::None Is Currently Not Supported");
 		case RendererAPI::API::OpenGL:  return new OpenGLIndexBuffer(indices, count);
 		}
 

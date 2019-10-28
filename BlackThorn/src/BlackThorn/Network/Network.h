@@ -41,6 +41,8 @@ namespace BlackThorn {
 
 	private:
 		//static std::thread m_ListenerThread;
+		static bool m_TCPClose;
+		static bool m_UDPClose;
 	};
 
 }

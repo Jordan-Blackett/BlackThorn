@@ -3,6 +3,9 @@
 
 namespace BlackThorn {
 
+	bool Network::m_TCPClose = false;
+	bool Network::m_UDPClose = false;
+
 	bool Network::Initialize()
 	{
 		// Initialze winsock
@@ -39,11 +42,12 @@ namespace BlackThorn {
 		BT_CORE_INFO("NETWORK: TCP Listener Established.");
 
 		BT_CORE_WARN("NETWORK: Waiting for connections...");
-		while (1) {
+		while (!m_TCPClose) {
 			AcceptConnections(listeningSocket);
 			BT_CORE_INFO("Acceptor restarting...");
 		}
 
+		BT_CORE_INFO("NETWORK: TCP Ending.");
 		//return true;
 	}
 
@@ -59,10 +63,16 @@ namespace BlackThorn {
 		}
 		BT_CORE_INFO("NETWORK: UDP Established.");
 		UDPConsumer(UDPSocket, hint);
+
+		BT_CORE_INFO("NETWORK: UDP Ending.");
 	}
 
 	void Network::CleanUp()
 	{
+		m_TCPClose = true;
+		m_UDPClose = true;
+
+		WSACleanup();
 	}
 
 	void Network::Close()

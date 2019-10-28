@@ -23,6 +23,14 @@ public:
 		}
 	}
 
+	virtual ~NetworkLayer() override
+	{
+		BlackThorn::Network::CleanUp();
+		m_TCPListenerThread.join();
+		m_UDPThread.join();
+		//std::terminate(m_TCPListenerThread);
+	}
+
 	virtual void OnUpdate(BlackThorn::Timestep ts) override
 	{
 	}
@@ -50,7 +58,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f,
 		};
 
-		std::shared_ptr<BlackThorn::VertexBuffer> vertexBuffer;
+		BlackThorn::Ref<BlackThorn::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(BlackThorn::VertexBuffer::Create(vertices, sizeof(vertices)));
 		BlackThorn::BufferLayout layout = {
 			{ BlackThorn::ShaderDataType::Float3, "a_Position" },
@@ -60,7 +68,7 @@ public:
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<BlackThorn::IndexBuffer> indexBuffer;
+		BlackThorn::Ref<BlackThorn::IndexBuffer> indexBuffer;
 		indexBuffer.reset(BlackThorn::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
@@ -73,7 +81,7 @@ public:
 			-0.5f,  0.5f, 0.0f
 		};
 
-		std::shared_ptr<BlackThorn::VertexBuffer> squareVertexBuffer;
+		BlackThorn::Ref<BlackThorn::VertexBuffer> squareVertexBuffer;
 		squareVertexBuffer.reset(BlackThorn::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVertexBuffer->SetLayout({
 			{ BlackThorn::ShaderDataType::Float3, "a_Position" }
@@ -81,7 +89,7 @@ public:
 		m_SquareVertexArray->AddVertexBuffer(squareVertexBuffer);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<BlackThorn::IndexBuffer> squareIndexBuffer;
+		BlackThorn::Ref<BlackThorn::IndexBuffer> squareIndexBuffer;
 		squareIndexBuffer.reset(BlackThorn::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVertexArray->SetIndexBuffer(squareIndexBuffer);
 
@@ -159,7 +167,7 @@ public:
 
 	virtual void OnUpdate(BlackThorn::Timestep ts) override
 	{
-		BT_TRACE("Delta time: {0}s ({1}ms)", ts.GetSeconds(), ts.GetMilliseconds());
+		//BT_TRACE("Delta time: {0}s ({1}ms)", ts.GetSeconds(), ts.GetMilliseconds());
 
 		if (BlackThorn::Input::IsKeyPressed(BT_KEY_A))
 			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
@@ -236,11 +244,11 @@ public:
 	//}
 
 private:
-	std::shared_ptr<BlackThorn::Shader> m_Shader;
-	std::shared_ptr<BlackThorn::VertexArray> m_VertexArray;
+	BlackThorn::Ref<BlackThorn::Shader> m_Shader;
+	BlackThorn::Ref<BlackThorn::VertexArray> m_VertexArray;
 
-	std::shared_ptr<BlackThorn::Shader> m_flatColorShader;
-	std::shared_ptr<BlackThorn::VertexArray> m_SquareVertexArray;
+	BlackThorn::Ref<BlackThorn::Shader> m_flatColorShader;
+	BlackThorn::Ref<BlackThorn::VertexArray> m_SquareVertexArray;
 
 	BlackThorn::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;

@@ -39,8 +39,6 @@ namespace BlackThorn {
 
 		BT_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
-		
-
 		if (!s_GLFWInitialized)
 		{
 			// TODO: glfwTerminate on system shutdown
@@ -53,7 +51,6 @@ namespace BlackThorn {
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
 		m_Context = new OpenGLContext(m_Window);
 		m_Context->Init();
-
 
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
