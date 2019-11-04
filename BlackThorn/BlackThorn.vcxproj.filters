@@ -7,6 +7,9 @@
     <Filter Include="src\BlackThorn">
       <UniqueIdentifier>{24AF67E5-107D-5BEB-F910-CC11E57D3750}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\BlackThorn\Core">
+      <UniqueIdentifier>{FCE9FFEB-684B-DDF9-F1B8-23AC5D1914B9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\BlackThorn\Events">
       <UniqueIdentifier>{886AC4F0-F4D6-7FEB-BDCA-174929F6A153}</UniqueIdentifier>
     </Filter>
@@ -49,6 +52,9 @@
     <Filter Include="vendor\glm\glm\gtx">
       <UniqueIdentifier>{B3A6A76B-9F8A-68C1-08EB-6214F4ED5243}</UniqueIdentifier>
     </Filter>
+    <Filter Include="vendor\stb_image">
+      <UniqueIdentifier>{0DA0BA59-F998-D9AB-22CB-BE300E23B9B7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\BlackThorn.h">
@@ -59,6 +65,9 @@
     </ClInclude>
     <ClInclude Include="src\BlackThorn\Core.h">
       <Filter>src\BlackThorn</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Core\Timestep.h">
+      <Filter>src\BlackThorn\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\BlackThorn\EntryPoint.h">
       <Filter>src\BlackThorn</Filter>
@@ -102,16 +111,58 @@
     <ClInclude Include="src\BlackThorn\Network\Socket.h">
       <Filter>src\BlackThorn\Network</Filter>
     </ClInclude>
+    <ClInclude Include="src\BlackThorn\Renderer\Buffer.h">
+      <Filter>src\BlackThorn\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\BlackThorn\Renderer\GraphicsContext.h">
+      <Filter>src\BlackThorn\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Renderer\OrthographicCamera.h">
+      <Filter>src\BlackThorn\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Renderer\RenderCommand.h">
+      <Filter>src\BlackThorn\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Renderer\Renderer.h">
+      <Filter>src\BlackThorn\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Renderer\RendererAPI.h">
+      <Filter>src\BlackThorn\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Renderer\Shader.h">
+      <Filter>src\BlackThorn\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Renderer\Texture.h">
+      <Filter>src\BlackThorn\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Renderer\VertexArray.h">
       <Filter>src\BlackThorn\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\BlackThorn\Window.h">
       <Filter>src\BlackThorn</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>src\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsNetwork.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
@@ -1224,20 +1275,9 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\BlackThorn\Renderer\Shader.h" />
-    <ClInclude Include="src\BlackThorn\Renderer\Texture.h" />
-    <ClInclude Include="src\BlackThorn\Renderer\Buffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
-    <ClInclude Include="src\BlackThorn\Renderer\Renderer.h" />
-    <ClInclude Include="src\BlackThorn\Renderer\VertexArray.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\BlackThorn\Renderer\RendererAPI.h" />
-    <ClInclude Include="src\BlackThorn\Renderer\RenderCommand.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
-    <ClInclude Include="src\BlackThorn\Renderer\OrthographicCamera.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsNetwork.h" />
-    <ClInclude Include="src\BlackThorn\Core\Timestep.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="vendor\stb_image\stb_image.h">
+      <Filter>vendor\stb_image</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BlackThorn\Application.cpp">
@@ -1264,7 +1304,46 @@
     <ClCompile Include="src\BlackThorn\Network\Socket.cpp">
       <Filter>src\BlackThorn\Network</Filter>
     </ClCompile>
+    <ClCompile Include="src\BlackThorn\Renderer\Buffer.cpp">
+      <Filter>src\BlackThorn\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BlackThorn\Renderer\OrthographicCamera.cpp">
+      <Filter>src\BlackThorn\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BlackThorn\Renderer\RenderCommand.cpp">
+      <Filter>src\BlackThorn\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BlackThorn\Renderer\Renderer.cpp">
+      <Filter>src\BlackThorn\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BlackThorn\Renderer\RendererAPI.cpp">
+      <Filter>src\BlackThorn\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BlackThorn\Renderer\Shader.cpp">
+      <Filter>src\BlackThorn\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BlackThorn\Renderer\Texture.cpp">
+      <Filter>src\BlackThorn\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BlackThorn\Renderer\VertexArray.cpp">
+      <Filter>src\BlackThorn\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
@@ -1276,17 +1355,8 @@
     <ClCompile Include="src\btpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\BlackThorn\Renderer\Shader.cpp" />
-    <ClCompile Include="src\BlackThorn\Renderer\Texture.cpp" />
-    <ClCompile Include="src\BlackThorn\Renderer\Buffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
-    <ClCompile Include="src\BlackThorn\Renderer\Renderer.cpp" />
-    <ClCompile Include="src\BlackThorn\Renderer\VertexArray.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\BlackThorn\Renderer\RendererAPI.cpp" />
-    <ClCompile Include="src\BlackThorn\Renderer\RenderCommand.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
-    <ClCompile Include="src\BlackThorn\Renderer\OrthographicCamera.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="vendor\stb_image\stb_image.cpp">
+      <Filter>vendor\stb_image</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

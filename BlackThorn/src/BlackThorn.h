@@ -19,6 +19,7 @@
 
 #include "BlackThorn/Renderer/Buffer.h"
 #include "BlackThorn/Renderer/Shader.h"
+#include "BlackThorn/Renderer/Texture.h"
 #include "BlackThorn/Renderer/VertexArray.h"
 
 #include "BlackThorn/Renderer/OrthographicCamera.h"
