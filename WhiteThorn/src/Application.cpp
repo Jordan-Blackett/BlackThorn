@@ -196,6 +196,7 @@ public:
 		m_TextureShader.reset(BlackThorn::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
 
 		m_Texture = BlackThorn::Texture2D::Create("assets/textures/Checkerboard.png");
+		m_BlendTexture = BlackThorn::Texture2D::Create("assets/textures/blend_test.png");
 
 		std::dynamic_pointer_cast<BlackThorn::OpenGLShader>(m_TextureShader)->Bind();
 		std::dynamic_pointer_cast<BlackThorn::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
@@ -246,6 +247,9 @@ public:
 		m_Texture->Bind();
 		BlackThorn::Renderer::Submit(m_TextureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
+		m_BlendTexture->Bind();
+		BlackThorn::Renderer::Submit(m_TextureShader, m_SquareVertexArray, glm::translate(glm::mat4(1.0f), glm::vec3(0.15, -0.15, 0.0f)) * glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
 		//BlackThorn::Renderer::Submit(m_flatColorShader, m_SquareVertexArray);
 		//BlackThorn::Renderer::Submit(m_Shader, m_VertexArray);
 
@@ -287,7 +291,7 @@ private:
 	BlackThorn::Ref<BlackThorn::VertexArray> m_VertexArray;
 
 	BlackThorn::Ref<BlackThorn::Shader> m_flatColorShader, m_TextureShader;
-	BlackThorn::Ref<BlackThorn::Texture2D> m_Texture;
+	BlackThorn::Ref<BlackThorn::Texture2D> m_Texture, m_BlendTexture;
 
 	BlackThorn::Ref<BlackThorn::VertexArray> m_SquareVertexArray;
 
