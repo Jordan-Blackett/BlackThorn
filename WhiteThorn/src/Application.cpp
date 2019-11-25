@@ -129,7 +129,7 @@ public:
 			}
 		)";
 
-		m_Shader.reset(BlackThorn::Shader::Create(vertexSrc, fragmentSrc));
+		m_Shader = BlackThorn::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
 
 		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
@@ -163,44 +163,15 @@ public:
 			}
 		)";
 
-		m_flatColorShader.reset(BlackThorn::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+		m_FlatColorShader = BlackThorn::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
 
-		//std::string textureShaderVertexSrc = R"(
-		//	#version 330 core
-		//	
-		//	layout(location = 0) in vec3 a_Position;
-		//	layout(location = 1) in vec2 a_TexCoord;
-		//	uniform mat4 u_ViewProjection;
-		//	uniform mat4 u_Transform;
-		//	out vec2 v_TexCoord;
-		//	void main()
-		//	{
-		//		v_TexCoord = a_TexCoord;
-		//		gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
-		//	}
-		//)";
-
-		//std::string textureShaderFragmentSrc = R"(
-		//	#version 330 core
-		//	
-		//	layout(location = 0) out vec4 color;
-		//	in vec2 v_TexCoord;
-		//	
-		//	uniform sampler2D u_Texture;
-		//	void main()
-		//	{
-		//		color = texture(u_Texture, v_TexCoord);
-		//	}
-		//)";
-
-		//m_TextureShader.reset(BlackThorn::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
-		m_TextureShader.reset(BlackThorn::Shader::Create("assets/shaders/Texture.glsl"));
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 		
 		m_Texture = BlackThorn::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_BlendTexture = BlackThorn::Texture2D::Create("assets/textures/blend_test.png");
 
-		std::dynamic_pointer_cast<BlackThorn::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<BlackThorn::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<BlackThorn::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<BlackThorn::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	virtual void OnUpdate(BlackThorn::Timestep ts) override
@@ -232,8 +203,8 @@ public:
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
-		std::dynamic_pointer_cast<BlackThorn::OpenGLShader>(m_flatColorShader)->Bind();
-		std::dynamic_pointer_cast<BlackThorn::OpenGLShader>(m_flatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+		std::dynamic_pointer_cast<BlackThorn::OpenGLShader>(m_FlatColorShader)->Bind();
+		std::dynamic_pointer_cast<BlackThorn::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
 		
 		for (int y = 0; y < 20; y++)
 		{
@@ -241,15 +212,17 @@ public:
 			{
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-				BlackThorn::Renderer::Submit(m_flatColorShader, m_SquareVertexArray, transform);
+				BlackThorn::Renderer::Submit(m_FlatColorShader, m_SquareVertexArray, transform);
 			}
 		}
 
+		auto textureShader = m_ShaderLibrary.Get("Texture");
+
 		m_Texture->Bind();
-		BlackThorn::Renderer::Submit(m_TextureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		BlackThorn::Renderer::Submit(textureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		m_BlendTexture->Bind();
-		BlackThorn::Renderer::Submit(m_TextureShader, m_SquareVertexArray, glm::translate(glm::mat4(1.0f), glm::vec3(0.15, -0.15, 0.0f)) * glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		BlackThorn::Renderer::Submit(textureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		//BlackThorn::Renderer::Submit(m_flatColorShader, m_SquareVertexArray);
 		//BlackThorn::Renderer::Submit(m_Shader, m_VertexArray);
@@ -288,10 +261,11 @@ public:
 	//}
 
 private:
+	BlackThorn::ShaderLibrary m_ShaderLibrary;
 	BlackThorn::Ref<BlackThorn::Shader> m_Shader;
 	BlackThorn::Ref<BlackThorn::VertexArray> m_VertexArray;
 
-	BlackThorn::Ref<BlackThorn::Shader> m_flatColorShader, m_TextureShader;
+	BlackThorn::Ref<BlackThorn::Shader> m_FlatColorShader;
 	BlackThorn::Ref<BlackThorn::Texture2D> m_Texture, m_BlendTexture;
 
 	BlackThorn::Ref<BlackThorn::VertexArray> m_SquareVertexArray;
