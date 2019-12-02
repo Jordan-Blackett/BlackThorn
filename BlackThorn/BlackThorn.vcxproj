@@ -140,6 +140,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\BlackThorn\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\BlackThorn.h" />
     <ClInclude Include="src\BlackThorn\Application.h" />
     <ClInclude Include="src\BlackThorn\Core.h" />
@@ -549,6 +550,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\BlackThorn\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\BlackThorn\Application.cpp" />
     <ClCompile Include="src\BlackThorn\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\BlackThorn\ImGui\ImGuiLayer.cpp" />

@@ -10,6 +10,7 @@
 #include "BlackThorn/Input.h"
 #include "BlackThorn/KeyCodes.h"
 #include "BlackThorn/MouseButtonCodes.h"
+#include "BlackThorn/Renderer/OrthographicCameraController.h"
 
 #include "BlackThorn/ImGui/ImGuiLayer.h"
 
@@ -24,8 +25,3 @@
 
 #include "BlackThorn/Renderer/OrthographicCamera.h"
 // ---------------------------------
-
-// ----Entry Point------------------
-#include "BlackThorn/EntryPoint.h"
-// ---------------------------------
-
