@@ -60,17 +60,38 @@
     <ClInclude Include="src\BlackThorn.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\BlackThorn\Application.h">
-      <Filter>src\BlackThorn</Filter>
+    <ClInclude Include="src\BlackThorn\Core\Application.h">
+      <Filter>src\BlackThorn\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\BlackThorn\Core.h">
-      <Filter>src\BlackThorn</Filter>
+    <ClInclude Include="src\BlackThorn\Core\Core.h">
+      <Filter>src\BlackThorn\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Core\EntryPoint.h">
+      <Filter>src\BlackThorn\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Core\Input.h">
+      <Filter>src\BlackThorn\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Core\KeyCodes.h">
+      <Filter>src\BlackThorn\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Core\Layer.h">
+      <Filter>src\BlackThorn\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Core\LayerStack.h">
+      <Filter>src\BlackThorn\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Core\Log.h">
+      <Filter>src\BlackThorn\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Core\MouseButtonCodes.h">
+      <Filter>src\BlackThorn\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\BlackThorn\Core\Timestep.h">
       <Filter>src\BlackThorn\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\BlackThorn\EntryPoint.h">
-      <Filter>src\BlackThorn</Filter>
+    <ClInclude Include="src\BlackThorn\Core\Window.h">
+      <Filter>src\BlackThorn\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\BlackThorn\Events\ApplicationEvent.h">
       <Filter>src\BlackThorn\Events</Filter>
@@ -87,24 +108,6 @@
     <ClInclude Include="src\BlackThorn\ImGui\ImGuiLayer.h">
       <Filter>src\BlackThorn\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\BlackThorn\Input.h">
-      <Filter>src\BlackThorn</Filter>
-    </ClInclude>
-    <ClInclude Include="src\BlackThorn\KeyCodes.h">
-      <Filter>src\BlackThorn</Filter>
-    </ClInclude>
-    <ClInclude Include="src\BlackThorn\Layer.h">
-      <Filter>src\BlackThorn</Filter>
-    </ClInclude>
-    <ClInclude Include="src\BlackThorn\LayerStack.h">
-      <Filter>src\BlackThorn</Filter>
-    </ClInclude>
-    <ClInclude Include="src\BlackThorn\Log.h">
-      <Filter>src\BlackThorn</Filter>
-    </ClInclude>
-    <ClInclude Include="src\BlackThorn\MouseButtonCodes.h">
-      <Filter>src\BlackThorn</Filter>
-    </ClInclude>
     <ClInclude Include="src\BlackThorn\Network\Network.h">
       <Filter>src\BlackThorn\Network</Filter>
     </ClInclude>
@@ -118,6 +121,9 @@
       <Filter>src\BlackThorn\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\BlackThorn\Renderer\OrthographicCamera.h">
+      <Filter>src\BlackThorn\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BlackThorn\Renderer\OrthographicCameraController.h">
       <Filter>src\BlackThorn\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\BlackThorn\Renderer\RenderCommand.h">
@@ -137,9 +143,6 @@
     </ClInclude>
     <ClInclude Include="src\BlackThorn\Renderer\VertexArray.h">
       <Filter>src\BlackThorn\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\BlackThorn\Window.h">
-      <Filter>src\BlackThorn</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1278,26 +1281,26 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\BlackThorn\Renderer\OrthographicCameraController.h" />
+    <ClInclude Include="src\BlackThorn\Renderer\Renderer2D.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\BlackThorn\Application.cpp">
-      <Filter>src\BlackThorn</Filter>
+    <ClCompile Include="src\BlackThorn\Core\Application.cpp">
+      <Filter>src\BlackThorn\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BlackThorn\Core\Layer.cpp">
+      <Filter>src\BlackThorn\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BlackThorn\Core\LayerStack.cpp">
+      <Filter>src\BlackThorn\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BlackThorn\Core\Log.cpp">
+      <Filter>src\BlackThorn\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\BlackThorn\ImGui\ImGuiBuild.cpp">
       <Filter>src\BlackThorn\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\BlackThorn\ImGui\ImGuiLayer.cpp">
       <Filter>src\BlackThorn\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="src\BlackThorn\Layer.cpp">
-      <Filter>src\BlackThorn</Filter>
-    </ClCompile>
-    <ClCompile Include="src\BlackThorn\LayerStack.cpp">
-      <Filter>src\BlackThorn</Filter>
-    </ClCompile>
-    <ClCompile Include="src\BlackThorn\Log.cpp">
-      <Filter>src\BlackThorn</Filter>
     </ClCompile>
     <ClCompile Include="src\BlackThorn\Network\Network.cpp">
       <Filter>src\BlackThorn\Network</Filter>
@@ -1309,6 +1312,9 @@
       <Filter>src\BlackThorn\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\BlackThorn\Renderer\OrthographicCamera.cpp">
+      <Filter>src\BlackThorn\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BlackThorn\Renderer\OrthographicCameraController.cpp">
       <Filter>src\BlackThorn\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\BlackThorn\Renderer\RenderCommand.cpp">
@@ -1359,6 +1365,6 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\BlackThorn\Renderer\OrthographicCameraController.cpp" />
+    <ClCompile Include="src\BlackThorn\Renderer\Renderer2D.cpp" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BlackThorn/Core.h"
+#include "BlackThorn/Core/Core.h"
 
 namespace BlackThorn {
 

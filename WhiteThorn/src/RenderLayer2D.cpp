@@ -4,7 +4,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "Platform/OpenGL/OpenGLShader.h"
 
 
 RenderLayer2D::RenderLayer2D()
@@ -19,28 +18,7 @@ RenderLayer2D::~RenderLayer2D()
 
 void RenderLayer2D::OnAttach()
 {
-	m_SquareVA = BlackThorn::VertexArray::Create();
-
-	float squareVertices[5 * 4] = {
-		-0.5f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-		 0.5f,  0.5f, 0.0f,
-		-0.5f,  0.5f, 0.0f
-	};
-
-	BlackThorn::Ref<BlackThorn::VertexBuffer> squareVB;
-	squareVB.reset(BlackThorn::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
-	squareVB->SetLayout({
-		{ BlackThorn::ShaderDataType::Float3, "a_Position" }
-		});
-	m_SquareVA->AddVertexBuffer(squareVB);
-
-	uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-	BlackThorn::Ref<BlackThorn::IndexBuffer> squareIB;
-	squareIB.reset(BlackThorn::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
-	m_SquareVA->SetIndexBuffer(squareIB);
-
-	m_FlatColorShader = BlackThorn::Shader::Create("assets/shaders/FlatColor.glsl");
+	m_CheckerboardTexture = BlackThorn::Texture2D::Create("assets/textures/Checkerboard.png");
 }
 
 void RenderLayer2D::OnDetach()
@@ -56,14 +34,15 @@ void RenderLayer2D::OnUpdate(BlackThorn::Timestep ts)
 	BlackThorn::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 	BlackThorn::RenderCommand::Clear();
 
-	BlackThorn::Renderer::BeginScene(m_CameraController.GetCamera());
+	BlackThorn::Renderer2D::BeginScene(m_CameraController.GetCamera());
+	BlackThorn::Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f, 0.2f, 0.3f, 1.0f });
+	BlackThorn::Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, { 0.2f, 0.3f, 0.8f, 1.0f });
+	BlackThorn::Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 10.0f, 10.0f }, m_CheckerboardTexture);
+	BlackThorn::Renderer2D::EndScene();
 
-	std::dynamic_pointer_cast<BlackThorn::OpenGLShader>(m_FlatColorShader)->Bind();
-	std::dynamic_pointer_cast<BlackThorn::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);
-
-	BlackThorn::Renderer::Submit(m_FlatColorShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-
-	BlackThorn::Renderer::EndScene();
+	// TODO: Add these functions - Shader::SetMat4, Shader::SetFloat4
+	//std::dynamic_pointer_cast<BlackThorn::OpenGLShader>(m_FlatColorShader)->Bind();
+	//std::dynamic_pointer_cast<BlackThorn::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);
 }
 
 void RenderLayer2D::OnImGuiRender()

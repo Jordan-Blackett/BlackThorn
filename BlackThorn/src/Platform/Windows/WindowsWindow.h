@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BlackThorn/Window.h"
+#include "BlackThorn/Core/Window.h"
 #include "BlackThorn/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

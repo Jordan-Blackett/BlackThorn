@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BlackThorn/Core.h"
+#include "BlackThorn/Core/Core.h"
 #include "BlackThorn/Core/TimeStep.h"
 #include "BlackThorn/Events/Event.h"
 

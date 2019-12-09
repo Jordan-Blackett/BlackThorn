@@ -5,7 +5,7 @@
 #include "examples/imgui_impl_opengl3.h"
 #include "examples/imgui_impl_glfw.h"
 
-#include "BlackThorn/Application.h"
+#include "BlackThorn/Core/Application.h"
 
 // TEMPORARY:
 #include "GLFW/glfw3.h"

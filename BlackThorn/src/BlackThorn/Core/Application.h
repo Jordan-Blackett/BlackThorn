@@ -3,11 +3,11 @@
 #include "Core.h"
 
 #include "Window.h"
-#include "BlackThorn/LayerStack.h"
-#include "Events/Event.h"
+#include "BlackThorn/Core/LayerStack.h"
+#include "BlackThorn/Events/Event.h"
 #include "BlackThorn/Events/ApplicationEvent.h"
 
-#include "Core/TimeStep.h"
+#include "BlackThorn/Core/TimeStep.h"
 
 #include "BlackThorn/ImGui/ImGuiLayer.h"
 

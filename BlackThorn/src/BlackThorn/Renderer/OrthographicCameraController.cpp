@@ -1,8 +1,8 @@
 #include "btpch.h"
 #include "OrthographicCameraController.h"
 
-#include "BlackThorn/Input.h"
-#include "BlackThorn/KeyCodes.h"
+#include "BlackThorn/Core/Input.h"
+#include "BlackThorn/Core/KeyCodes.h"
 
 namespace BlackThorn {
 

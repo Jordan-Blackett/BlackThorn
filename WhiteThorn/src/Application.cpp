@@ -1,5 +1,5 @@
 #include <BlackThorn.h>
-#include <BlackThorn/EntryPoint.h>
+#include <BlackThorn/Core/EntryPoint.h>
 
 #include "Platform/OpenGL/OpenGLShader.h"
 
@@ -9,6 +9,8 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "RenderLayer2D.h"
+
+#include "Entity.h"
 
 class NetworkLayer : public BlackThorn::Layer
 {
@@ -211,7 +213,7 @@ public:
 		BlackThorn::Renderer::Submit(textureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		m_BlendTexture->Bind();
-		BlackThorn::Renderer::Submit(textureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		BlackThorn::Renderer::Submit(textureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.5f), glm::vec3(1.5f)));
 
 		//BlackThorn::Renderer::Submit(m_flatColorShader, m_SquareVertexArray);
 		//BlackThorn::Renderer::Submit(m_Shader, m_VertexArray);

@@ -2,7 +2,7 @@
 
 #include "btpch.h"
 
-#include "BlackThorn/Core.h"
+#include "BlackThorn/Core/Core.h"
 #include "BlackThorn/Events/Event.h"
 
 namespace BlackThorn {

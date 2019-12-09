@@ -13,7 +13,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "BlackThorn/Log.h"
+#include "BlackThorn/Core/Log.h"
 
 #ifdef BT_PLATFORM_WINDOWS
 	#include <Windows.h>

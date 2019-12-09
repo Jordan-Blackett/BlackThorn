@@ -1,7 +1,7 @@
 #include "btpch.h"
 #include "WindowsInput.h"
 
-#include "BlackThorn/Application.h"
+#include "BlackThorn/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace BlackThorn {

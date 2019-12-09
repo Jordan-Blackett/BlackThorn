@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BlackThorn/Layer.h"
+#include "BlackThorn/Core/Layer.h"
 
 #include "BlackThorn/Events/ApplicationEvent.h"
 #include "BlackThorn/Events/KeyEvent.h"

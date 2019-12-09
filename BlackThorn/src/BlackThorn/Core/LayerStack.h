@@ -1,6 +1,6 @@
 #pragma once
 
-#include "BlackThorn/Core.h"
+#include "BlackThorn/Core/Core.h"
 #include "Layer.h"
 
 #include <vector>
