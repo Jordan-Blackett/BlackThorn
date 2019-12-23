@@ -131,12 +131,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Entity.h" />
     <ClInclude Include="src\RenderLayer2D.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
-    <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\RenderLayer2D.cpp" />
   </ItemGroup>
   <ItemGroup>

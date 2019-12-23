@@ -10,8 +10,6 @@
 
 #include "RenderLayer2D.h"
 
-#include "Entity.h"
-
 class NetworkLayer : public BlackThorn::Layer
 {
 public:
