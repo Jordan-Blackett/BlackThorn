@@ -1282,6 +1282,7 @@
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="src\BlackThorn\Renderer\Renderer2D.h" />
+    <ClInclude Include="src\BlackThorn\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\BlackThorn\Core\Application.cpp">

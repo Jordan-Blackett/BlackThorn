@@ -15,6 +15,8 @@
 
 #include "BlackThorn/Core/Log.h"
 
+#include "BlackThorn/Debug/Instrumentor.h"
+
 #ifdef BT_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

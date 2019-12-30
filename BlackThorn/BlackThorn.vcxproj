@@ -140,6 +140,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\BlackThorn\Debug\Instrumentor.h" />
     <ClInclude Include="src\BlackThorn\Renderer\Renderer2D.h" />
     <ClInclude Include="src\BlackThorn.h" />
     <ClInclude Include="src\BlackThorn\Core\Application.h" />
